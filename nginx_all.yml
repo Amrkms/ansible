@@ -1,0 +1,20 @@
+---
+- hosts: nginx
+  tasks:
+      - name: Install EPEL release for nginx
+        yum: name=epel-release state=present
+
+      - name: Install nginx web server
+        yum: name=nginx state=installed update_cache=true
+        notify:
+          - start nginx
+       
+      - name: Start NGINX
+        service:
+          name: nginx
+          state: started 
+
+
+#  handlers:
+#      - name: start nginx
+#        service: name=nginx enables=yes state=started

@@ -1,0 +1,8 @@
+---
+- name: Install Docker
+  gather_facts: No
+  hosts: webservers
+  roles: 
+  - deploy_webapp
+ 
+   
