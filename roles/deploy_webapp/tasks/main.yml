@@ -1,0 +1,52 @@
+---
+# tasks file for deploy_webapp
+  - name: Install yum utils
+    yum:
+      name: yum-utils
+      state: latest
+
+  - name: Install device-mapper-persistent-data
+    yum:
+      name: device-mapper-persistent-data
+      state: latest
+
+  - name: Install lvm2
+    yum:
+      name: lvm2
+      state: latest
+
+  - name: Add Docker repo
+    get_url:
+      url: https://download.docker.com/linux/centos/docker-ce.repo
+      dest: /etc/yum.repos.d/docker-ce.repo
+    become: yes
+
+  - name: Install Docker
+    package:
+      name: docker-ce
+      state: latest
+    become: yes
+
+  - easy_install:
+      name: pip
+      state: latest
+    become: yes
+
+  - name: Start Docker service
+    service:
+      name: docker
+      state: started
+      enabled: yes
+    become: yes
+
+  - name: Pull image webapp
+    shell: docker pull andrmir/repo_andrmir:webapp
+#    docker_image:
+#      name: andrmir/repo_andrmir:webapp
+#      source: pull
+
+  - name: Start container
+    shell: docker run --network host -d andrmir/repo_andrmir:webapp 
+
+
+

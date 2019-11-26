@@ -1,0 +1,8 @@
+---
+- name: Install nginx
+  gather_facts: No
+  hosts: nginx
+  roles: 
+  - deploy_nginx
+ 
+   

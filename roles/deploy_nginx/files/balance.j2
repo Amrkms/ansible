@@ -1,0 +1,17 @@
+upstream {{backendname}}  {
+
+server {{ip1}};
+server {{ip2}};
+server {{ip3}};
+
+}
+
+server {
+
+listen {{portapp}};
+
+location {{locationapp}}  {
+  proxy_pass http://{{backendname}};
+  }
+}
+
