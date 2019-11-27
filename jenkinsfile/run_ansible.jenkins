@@ -16,7 +16,7 @@ pipeline {
                 echo " ============== ansible playbook =================="
 
                dir ('') {
-                	sh """start.sh"""
+                	sh """ansible-playbook webapp.yml"""
                         }
                   
              }
