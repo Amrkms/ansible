@@ -1,5 +1,5 @@
 #!groovy
-// Run ansible 11122222333
+// Run ansible 11122222333+++++
 properties([disableConcurrentBuilds()])
 
 pipeline {
@@ -17,8 +17,6 @@ pipeline {
 
                dir ('') {
                 	sh """start.sh"""
-//                        sh """sudo coverage run -m pytest"""
-//                        sh """sudo coverage report"""
                 }
             }
         }
