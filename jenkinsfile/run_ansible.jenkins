@@ -1,5 +1,5 @@
 #!groovy
-// Run ansible 11122222333+++++
+// Run ansible 111222223344+
 properties([disableConcurrentBuilds()])
 
 pipeline {
@@ -8,7 +8,7 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
-    }
+            }
     stages {
 
         stage("Start Ansible playbook for webapp")  {
@@ -17,11 +17,12 @@ pipeline {
 
                dir ('') {
                 	sh """start.sh"""
-                }
-            }
-        }
-} 
-
+                        }
+                  
+             }
+           }
+         }
+}
 
 
 
