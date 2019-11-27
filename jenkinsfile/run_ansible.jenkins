@@ -1,0 +1,57 @@
+#!groovy
+// Run ansible 11122222
+properties([disableConcurrentBuilds()])
+
+pipeline {
+    agent any
+    triggers { pollSCM('* * * * *') }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+        timestamps()
+    }
+    stages {
+
+        stage("Start Ansible playbook for webapp")  {
+            steps {
+                echo " ============== ansible playbook =================="
+
+               dir ('') {
+                	sh """start.sh"""
+//                        sh """sudo coverage run -m pytest"""
+//                        sh """sudo coverage report"""
+                }
+            }
+        }
+ 
+
+
+
+
+//        stage("docker login") {
+//            steps {
+//                echo " ============== docker login =================="
+//                withCredentials([usernamePassword(credentialsId: 'dockerhub_mironenko', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+//                    sh """uptime"""
+//                    sh """docker login -u $USERNAME -p $PASSWORD"""
+                    
+//                }
+//            }
+//        }
+//        stage("create docker image") {
+//            steps {
+//                echo " ============== start building image =================="
+//                dir ('docker') {
+//                	sh """docker build -t andrmir/private:webapp . """
+//                }
+//            }
+//        }
+//        stage("docker push") {
+//            steps {
+//                echo " ============== start pushing image =================="
+//                sh """
+//                docker push andrmir/private:webapp 
+//                """
+//            }
+//        }
+//    }
+//}

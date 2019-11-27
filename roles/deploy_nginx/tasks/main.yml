@@ -39,19 +39,19 @@
       enabled: yes
     become: yes
 
-  - name: Pull image webapp
+  - name: Pull image nginx
     shell: docker pull nginx
 #    docker_image:
 #      name: andrmir/repo_andrmir:webapp
 #      source: pull
 
   - name: Generate balance.conf from templates/balance.j2
-    copy: 
-      src: templates/balance.j2
+    template: 
+      src: balance.j2
       dest: /etc/nginx/conf.d/balance.conf
     
 
-  - name: Start container
+  - name: Start nginx container
     shell: docker run -p 8080:80 -d nginx 
 
 
